@@ -351,19 +351,23 @@ DocMeasure.prototype.measureTable = function(node) {
 		}
 
 		if ( node.layout && typeof node.layout.paddingLeft === 'number' || node.layout.paddingLeft instanceof Number) {
-			layout.paddingLeft = function(i, node) { return parseInt(node.layout.paddingLeft); };
+			var paddingLeft = parseInt(node.layout.paddingLeft);
+			layout.paddingLeft = function(i, node) { return paddingLeft; };
 		}
 
 		if ( node.layout && typeof node.layout.paddingRight === 'number' || node.layout.paddingRight instanceof Number) {
-			layout.paddingRight = function(i, node) { return parseInt(node.layout.paddingRight); };
+			var paddingRight = parseInt(node.layout.paddingRight);
+			layout.paddingRight = function(i, node) { return paddingRight; };
 		}
 
 		if ( node.layout && typeof node.layout.paddingTop === 'number' || node.layout.paddingTop instanceof Number) {
-			layout.paddingTop = function(i, node) { return parseInt(node.layout.paddingTop); };
+			var paddingTop = parseInt(node.layout.paddingTop);
+			layout.paddingTop = function(i, node) { return paddingTop; };
 		}
 
 		if ( node.layout && typeof node.layout.paddingBottom === 'number' || node.layout.paddingBottom instanceof Number) {
-			layout.paddingBottom = function(i, node) { return parseInt(node.layout.paddingBottomt); }
+			var paddingBottom = parseInt(node.layout.paddingBottom);
+			layout.paddingBottom = function(i, node) { return paddingBottom; }
 		}
 
 		var defaultLayout = {
