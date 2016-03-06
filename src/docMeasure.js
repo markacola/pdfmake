@@ -37,7 +37,7 @@ DocMeasure.prototype.measureNode = function(node) {
 	} else if (typeof node == 'string' || node instanceof String) {
 		node = { text: node };
 	}
-	
+
 	// Deal with empty nodes to prevent crash in getNodeMargin
 	if (Object.keys(node).length === 0) {
 		// A warning could be logged: console.warn('pdfmake: Empty node, ignoring it');
@@ -137,7 +137,7 @@ DocMeasure.prototype.measureNode = function(node) {
 				margin = convertMargin(flattenedStyleArray.margin);
 			}
 		}
-		
+
 		margin = processSingleMargins(node, margin);
 
 		if(node.margin){
@@ -348,6 +348,22 @@ DocMeasure.prototype.measureTable = function(node) {
 
 		if (typeof node.layout === 'string' || node instanceof String) {
 			layout = tableLayouts[layout];
+		}
+
+		if ( node.layout && typeof node.layout.paddingLeft === 'number' || node.layout.paddingLeft instanceof Number) {
+			layout.paddingLeft = function(i, node) { return parseInt(node.layout.paddingLeft); };
+		}
+
+		if ( node.layout && typeof node.layout.paddingRight === 'number' || node.layout.paddingRight instanceof Number) {
+			layout.paddingRight = function(i, node) { return parseInt(node.layout.paddingRight); };
+		}
+
+		if ( node.layout && typeof node.layout.paddingTop === 'number' || node.layout.paddingTop instanceof Number) {
+			layout.paddingTop = function(i, node) { return parseInt(node.layout.paddingTop); };
+		}
+
+		if ( node.layout && typeof node.layout.paddingBottom === 'number' || node.layout.paddingBottom instanceof Number) {
+			layout.paddingBottom = function(i, node) { return parseInt(node.layout.paddingBottomt); }
 		}
 
 		var defaultLayout = {
